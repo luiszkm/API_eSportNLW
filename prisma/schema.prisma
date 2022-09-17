@@ -15,8 +15,8 @@ model Game {
 }
 
 model Ad {
-  id     String @id @default(uuid())
-  gameId String
+  id             String   @id @default(uuid())
+  gameId         String
   name           String
   yearsPlaying   String
   discord        String
