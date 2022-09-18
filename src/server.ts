@@ -7,11 +7,10 @@ import {convertMinutesToHoursString} from './utils/convertMinutesToHoursString';
 
 
 const app = express();
-app.use(cors({
-  origin: 'https://localhost:3000'
-}))
-
 app.use(express.json())
+app.use(cors())
+
+
 const prisma = new PrismaClient({
   log: ['query']
 })
@@ -31,14 +30,14 @@ app.get('/games', async (req, res) => {
 })
 
 app.get('/games/:id/ads', async (req, res) => {
-  const gameId = req.params.id
+  const gameId : any = req.params.id
 
   const ads = await prisma.ad.findMany({
     select: {
       id: true,
       name: true,
       weekDays: true,
-      useVoiceChanel: true,
+      useVoiceChannel: true,
       yearsPlaying: true,
       hourStart: true,
       hourEnd: true,
@@ -94,9 +93,7 @@ app.post('/games/:id/ads', async (req, res) => {
       weekDays: body.weekDays.join(','),
       hourStart: convertHourStringToMinutes(body.hourStart),
       hourEnd: convertHourStringToMinutes(body.hourEnd),
-      useVoiceChanel: body.useVoiceChanel
-
-
+      useVoiceChannel: body.useVoiceChannel,
     }
   })
   return res.status(201).json(ad)

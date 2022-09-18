@@ -8,23 +8,24 @@ datasource db {
 }
 
 model Game {
-  id         String @id @default(uuid())
-  title      String
-  bannnerUrl String
-  ads        Ad[]
+  id        String @id @default(uuid())
+  title     String
+  bannerUrl String
+
+  ads       Ad[]
 }
 
 model Ad {
-  id             String   @id @default(uuid())
-  gameId         String
-  name           String
-  yearsPlaying   String
-  discord        String
-  weekDays       String
-  hourStart      Int
-  hourEnd        Int
-  useVoiceChanel Boolean
-  created_at     DateTime @default(now())
+  id              String   @id @default(uuid())
+  gameId          String
+  name            String
+  yearsPlaying    Int
+  discord         String      
+  weekDays        String
+  hourStart       Int
+  hourEnd         Int
+  useVoiceChannel Boolean
+  created_at      DateTime @default(now())
 
   game Game @relation(fields: [gameId], references: [id])
 }
