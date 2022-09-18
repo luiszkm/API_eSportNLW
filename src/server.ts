@@ -84,34 +84,20 @@ app.post('/games/:id/ads', async (req, res) => {
   const body: any = req.body
     
 
-  const teste = await prisma.ad.create({
+  const ad = await prisma.ad.create({
     data:{
       gameId,
       name: body.name,
       yearsPlaying: body.yearsPlaying,
       discord: body.discord,
       weekDays: body.weekDays.join(','),
-      hourStart: body.hourStart,
-      hourEnd: body.hourEnd,
+      hourStart: convertHourStringToMinutes(body.hourStart),
+      hourEnd: convertHourStringToMinutes(body.hourEnd),
       useVoiceChannel: body.useVoiceChannel,
-    
     }
-
   })
-  // const ad = await prisma.ad.create({
-  //   data: {
-  //     gameId,
-  //     name: body.name,
-  //     yearsPlaying: body.yearsPlaying,
-  //     discord: body.discord,
-  //     weekDays: body.weekDays.join(','),
-  //     hourStart: convertHourStringToMinutes(body.hourStart),
-  //     hourEnd: convertHourStringToMinutes(body.hourEnd),
-  //     useVoiceChannel: body.useVoiceChannel,
-  //   }
-  // })
 
-  return res.status(201).json(teste)
+  return res.status(201).json(ad)
 
 })
 
