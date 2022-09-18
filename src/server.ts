@@ -82,21 +82,36 @@ app.get('/ads/:id/discord', async (req, res) => {
 app.post('/games/:id/ads', async (req, res) => {
   const gameId = req.params.id
   const body: any = req.body
+    
 
-  
-  const ad = await prisma.ad.create({
-    data: {
+  const teste = await prisma.ad.create({
+    data:{
       gameId,
       name: body.name,
       yearsPlaying: body.yearsPlaying,
       discord: body.discord,
       weekDays: body.weekDays.join(','),
-      hourStart: convertHourStringToMinutes(body.hourStart),
-      hourEnd: convertHourStringToMinutes(body.hourEnd),
+      hourStart: body.hourStart,
+      hourEnd: body.hourEnd,
       useVoiceChannel: body.useVoiceChannel,
+    
     }
+
   })
-  return res.status(201).json(ad)
+  // const ad = await prisma.ad.create({
+  //   data: {
+  //     gameId,
+  //     name: body.name,
+  //     yearsPlaying: body.yearsPlaying,
+  //     discord: body.discord,
+  //     weekDays: body.weekDays.join(','),
+  //     hourStart: convertHourStringToMinutes(body.hourStart),
+  //     hourEnd: convertHourStringToMinutes(body.hourEnd),
+  //     useVoiceChannel: body.useVoiceChannel,
+  //   }
+  // })
+
+  return res.status(201).json(teste)
 
 })
 
