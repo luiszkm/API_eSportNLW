@@ -83,7 +83,7 @@ app.post('/games/:id/ads', async (req, res) => {
   const gameId = req.params.id
   const body: any = req.body
 
-
+  
   const ad = await prisma.ad.create({
     data: {
       gameId,
