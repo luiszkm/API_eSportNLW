@@ -101,4 +101,5 @@ app.post('/games/:id/ads', async (req, res) => {
 })
 
 
-app.listen(process.env.PORT)
+const PORT = process.env.PORT || 3333;
+app.listen(PORT, () => console.log(`Estou na porta ${PORT}`));
