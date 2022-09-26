@@ -101,4 +101,4 @@ app.post('/games/:id/ads', async (req, res) => {
 })
 
 
-app.listen(3333)
+app.listen(process.env.PORT)
