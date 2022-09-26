@@ -78,7 +78,6 @@ app.get('/ads/:id/discord', async (req, res) => {
 
 })
 
-
 app.post('/games/:id/ads', async (req, res) => {
   const gameId = req.params.id
   const body: any = req.body
