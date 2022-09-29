@@ -50,7 +50,7 @@ app.get('/games/:id/ads', async (req, res) => {
     }
   })
 
-  return res.json(ads.map(ad => {
+  return res.json(ads.map((ad: { weekDays: string; hourStart: number; hourEnd: number; }) => {
     return {
       ...ad,
       weekDays: ad.weekDays.split(','),
@@ -78,7 +78,6 @@ app.get('/ads/:id/discord', async (req, res) => {
 
 })
 
-
 app.post('/games/:id/ads', async (req, res) => {
   const gameId = req.params.id
   const body: any = req.body
@@ -102,4 +101,5 @@ app.post('/games/:id/ads', async (req, res) => {
 })
 
 
-app.listen(3333)
+const PORT = process.env.PORT || 3333;
+app.listen(PORT, () => console.log(`Estou na porta ${PORT}`));
